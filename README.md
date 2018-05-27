@@ -2,13 +2,11 @@
 
 
 ### Quickstart
-> **Init Quasar app -> ./QDescribApp**
->quasar dev
-
-> **Init Express server -> ./EDescribApp**
->yarn dev
+> _**Init Quasar app -> ./QDescribApp**_
+> quasar dev
+> _**Init Express server -> ./EDescribApp**_
+> yarn dev
 
 
 # License
 [MIT](http://www.google.com)
-
