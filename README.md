@@ -2,13 +2,8 @@
 
 
 ### Quickstart
-
-> **Init Quasar app -> ./QDescribApp**__
-> quasar dev
-
-> Init Express server -> ./EDescribApp
-
-> yarn dev
+> quasar dev -> Init Quasar app
+> yarn dev -> Init Express server
 
 
 # License
