@@ -2,9 +2,13 @@
 
 
 ### Quickstart
+
 > Init Quasar app -> ./QDescribApp
+
 > quasar dev
+
 > Init Express server -> ./EDescribApp
+
 > yarn dev
 
 
