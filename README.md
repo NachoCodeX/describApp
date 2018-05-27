@@ -3,7 +3,7 @@
 
 ### Quickstart
 
-> Init Quasar app -> ./QDescribApp
+> **Init Quasar app -> ./QDescribApp**__
 
 > quasar dev
 
