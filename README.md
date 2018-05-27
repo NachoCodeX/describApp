@@ -4,7 +4,6 @@
 ### Quickstart
 
 > **Init Quasar app -> ./QDescribApp**__
-
 > quasar dev
 
 > Init Express server -> ./EDescribApp
