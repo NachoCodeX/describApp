@@ -2,9 +2,10 @@
 
 
 ### Quickstart
-> quasar dev -> Init Quasar app
-
-> yarn dev -> Init Express server
+#### Init Quasar app
+> quasar dev 
+#### Init Express server
+> yarn dev 
 
 
 # License
