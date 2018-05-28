@@ -5,7 +5,8 @@ module.exports={
         user:'admin',
         pass:'123456',
         auth:{authdb:'admin'}
-    }
+    },
+    SALT_FACTOR:10
 
 
 }

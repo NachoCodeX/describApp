@@ -1,5 +1,4 @@
 import authController from '../controllers/auth';
-import { EPROTO } from 'constants';
 
 console.log(authController);
 
