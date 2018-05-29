@@ -6,6 +6,7 @@ import {generateToken} from '../shared/';
 
 module.exports={
     signIn(req,res){
+        const {email,password}=req.body;
         
         console.log("SIGN IN CONTROLLER");
         

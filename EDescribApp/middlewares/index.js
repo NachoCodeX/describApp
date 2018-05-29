@@ -9,11 +9,9 @@ export  function validator(req,res,next){
 
 export function isAuth(req,res,next){
     let token=req.headers.authorization.split(' ')[1];
-    if(isValidToken(token)){
-        next();
-    }else{
-        next(new Error('token is invalid'));
-    }
+    if(isValidToken(token)) return next();
+    else next(new Error('token is invalid'));
+    
     // console.log(token);
 }
 
