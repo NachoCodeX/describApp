@@ -16,9 +16,16 @@ app.use(express.json());
     -->http://localhost:8000/descripapp/auth/signup
 */
 
+
 app.use(`${APP_NAME}/api`,Api);
 app.use(`${APP_NAME}/auth`,Auth);
 
+//Error Handler 
+// app.use((err,req,res,next)=>{
+//     console.log(err.message);
+//     // return res.status(500).end('OK!');
+//     next();
+// });
 
 
 export default app;

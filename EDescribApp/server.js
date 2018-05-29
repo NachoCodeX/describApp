@@ -1,4 +1,6 @@
 import mongoose from 'mongoose';
+mongoose.Promise=global.Promise;
+
 import {waterfall} from 'async';
 import {URI,PORT,MONGO_CONFIG} from './config';
 

@@ -1,20 +1,34 @@
 import request from 'supertest';
+import app from '../app';
+import db from './db/';
+jest.setTimeout(30000);
+
+const BASE_URL = '/describapp/auth';
 
 
-describe(()=>{
-    test('Sign in controller',done=>{
-        
-        request(app).post('/describapp/auth/signup')
-        .then(response=>{
-            console.log("TEST!");
-            console.log("TEST2!");
-            
-            expect(response.statusCode).toBe(200)
-        });
-
-
-
-
+describe("Auth Controllers Testing",()=>{
+    beforeAll(()=>{
+        db.connect();
     });
+
+
+    test('It should response POST method /signup',done=>{
+        
+        const user={
+            email:'4811095288ic@gmail.com',
+            password:'12345678',
+            confirmPassword:'12345678',
+            firstName:'Jesus Ignacio',
+            lastName:'Castillo Barrios',
+            age:21
+        }
+
+        request(app).post(`${BASE_URL}/signup`)
+        .send(user)
+        .then(response=>{
+            expect(response.statusCode).toBe(200)
+            done();
+        });
     
+    });    
 });

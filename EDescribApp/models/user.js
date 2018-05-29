@@ -23,12 +23,13 @@ userSchema.methods.comparePassword=function(password){
     return compareSync(password,this.password);
 };
 userSchema.methods.userExists=function(){
+    console.log("AAAAAA");
+    
     return this.model('User').find({email:this.email}).exec().then(response=>response);
 }
 
 
 
-const userModel=mongoose.model('User',userSchema);
 
 
 
@@ -48,20 +49,29 @@ function hashPassword(user,next){
 
 
 userSchema.pre('save',async function(next){
-    let user=this,
-     isExists=await user.userExists(), 
     
-     errorMessage=new Error(`${user.email} is already in use`);
-
-    if(user.isNew && isExists.length>0) return next(errorMessage);
-    else if(user.isModified('password')){
-            console.log(`NEW USER`);   
-            user.password=await hashPassword(user,next);
-            return next();//explicit
-    }   
+    try {
+        
+        let user=this,
+        isExists=await user.userExists(), 
+        errorMessage=new Error(`${user.email} is already in use`);
+        console.log(`IS EXISTS -> ${isExists.length}`);
+        
+        if(user.isNew && isExists.length>0) return next(errorMessage);
+        else if(user.isModified('password')){
+                console.log(`NEW USER`);   
+                user.password=await hashPassword(user,next);
+                return next();//explicit
+        }   
+    } catch (error) {
+        console.log(error);
+        
+        console.log("ERROR!");
+        
+    }
 });
 
-export default userModel;
+export default mongoose.model('User',userSchema);;
 
 
 
@@ -69,4 +79,3 @@ export default userModel;
 
 
 
-export default mongoose.model('User',userSchema);
