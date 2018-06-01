@@ -7,17 +7,14 @@ import { authenticate } from './helpers.auth';
 
 module.exports={
     async signIn(req,res){
-        console.log("SIGN IN CONTROLLER");
         const {email,password}=req.body;
         try {
             const user = await authenticate(req.body).then(res=>res);
             console.log(user);
-            
-        } catch (error) {
-            console.log("ERROR!");
-            console.log(error.message);
-            
-            
+            return res.status(200).send(user);
+        } catch ({message,code}) {
+            console.log(message);
+            return res.status(code).send(message);
         }
         
         return res.status(200).send('OK');

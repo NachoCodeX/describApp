@@ -29,23 +29,23 @@ describe("Auth Controllers Testing",()=>{
 
 
 
-    // test('It should response POST method /signup',done=>{
+    it.skip('It should response POST method /signup',done=>{
         
-        // const user={
-        //     email:'4811095288ic@gmail.com',
-        //     password:'12345678',
-        //     confirmPassword:'12345678',
-        //     firstName:'Jesus Ignacio',
-        //     lastName:'Castillo Barrios',
-        //     age:21
-        // }
+        const user={
+            email:'4811095288ic@gmail.com',
+            password:'12345678',
+            confirmPassword:'12345678',
+            firstName:'Jesus Ignacio',
+            lastName:'Castillo Barrios',
+            age:21
+        }
 
-    //     request(app).post(`${BASE_URL}/signup`)
-    //     .send(user)
-    //     .then(response=>{
-    //         expect(response.statusCode).toBe(200)
-    //         done();
-    //     });
+        request(app).post(`${BASE_URL}/signup`)
+        .send(user)
+        .then(response=>{
+            expect(response.statusCode).toBe(200)
+            done();
+        });
     
-    // });    
+    });    
 });
