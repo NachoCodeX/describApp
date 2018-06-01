@@ -11,24 +11,41 @@ describe("Auth Controllers Testing",()=>{
         db.connect();
     });
 
-
-    test('It should response POST method /signup',done=>{
-        
-        const user={
+    it('should response POST /signin',done=>{
+        const user={    
             email:'4811095288ic@gmail.com',
-            password:'12345678',
-            confirmPassword:'12345678',
-            firstName:'Jesus Ignacio',
-            lastName:'Castillo Barrios',
-            age:21
+            password:'12345678'
         }
 
-        request(app).post(`${BASE_URL}/signup`)
+        request(app).post(`${BASE_URL}/signin`)
         .send(user)
         .then(response=>{
-            expect(response.statusCode).toBe(200)
+
+            expect(response.statusCode).toBe(200);
             done();
         });
+
+    });
+
+
+
+    // test('It should response POST method /signup',done=>{
+        
+        // const user={
+        //     email:'4811095288ic@gmail.com',
+        //     password:'12345678',
+        //     confirmPassword:'12345678',
+        //     firstName:'Jesus Ignacio',
+        //     lastName:'Castillo Barrios',
+        //     age:21
+        // }
+
+    //     request(app).post(`${BASE_URL}/signup`)
+    //     .send(user)
+    //     .then(response=>{
+    //         expect(response.statusCode).toBe(200)
+    //         done();
+    //     });
     
-    });    
+    // });    
 });

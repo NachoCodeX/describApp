@@ -1,16 +1,26 @@
 import User from '../models/user';
 import {sendMail} from './mailer';
 import {generateToken} from '../shared/';
+import { authenticate } from './helpers.auth';
 
 
 
 module.exports={
-    signIn(req,res){
-        const {email,password}=req.body;
-        
+    async signIn(req,res){
         console.log("SIGN IN CONTROLLER");
+        const {email,password}=req.body;
+        try {
+            const user = await authenticate(req.body).then(res=>res);
+            console.log(user);
+            
+        } catch (error) {
+            console.log("ERROR!");
+            console.log(error.message);
+            
+            
+        }
         
-        return res.status(200).send({user:{firstName:'Jesus'}});
+        return res.status(200).send('OK');
     },
     async signUp(req,res){
         console.log("SIGNUP CONTROLLER!");

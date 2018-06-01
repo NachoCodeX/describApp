@@ -22,9 +22,7 @@ userSchema.virtual('fullname').get(function(){
 userSchema.methods.comparePassword=function(password){
     return compareSync(password,this.password);
 };
-userSchema.methods.userExists=function(){
-    console.log("AAAAAA");
-    
+userSchema.methods.userExists=function(){    
     return this.model('User').find({email:this.email}).exec().then(response=>response);
 }
 
@@ -33,14 +31,11 @@ userSchema.methods.userExists=function(){
 
 
 
-function hashPassword(user,next){
-    if(!user.isModified('password')) return next();
+function hashPassword(user){
     const resultPromise=new Promise((resolve,reject)=>{
         const SALT=genSaltSync(SALT_FACTOR);
-
         return resolve(hashSync(user.password,SALT));
     });
-
     return resultPromise;
 }
 
@@ -50,19 +45,18 @@ function hashPassword(user,next){
 
 userSchema.pre('save',async function(next){
     
-    try {
-        
+    try { 
         let user=this,
         isExists=await user.userExists(), 
         errorMessage=new Error(`${user.email} is already in use`);
-        console.log(`IS EXISTS -> ${isExists.length}`);
         
         if(user.isNew && isExists.length>0) return next(errorMessage);
         else if(user.isModified('password')){
                 console.log(`NEW USER`);   
-                user.password=await hashPassword(user,next);
+                user.password=await hashPassword(user);
                 return next();//explicit
-        }   
+        }
+
     } catch (error) {
         console.log(error);
         
