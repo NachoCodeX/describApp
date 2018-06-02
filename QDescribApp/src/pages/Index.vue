@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex flex-center">
-    <img alt="Quasar logo" src="~assets/quasar-logo-full.svg">
+      <SignInForm/>
   </q-page>
 </template>
 
@@ -8,7 +8,10 @@
 </style>
 
 <script>
+import SignInForm from '../components/SignInForm';
 export default {
-  name: 'PageIndex'
+  components:{SignInForm},
+  name: 'PageIndex',
+
 }
 </script>
