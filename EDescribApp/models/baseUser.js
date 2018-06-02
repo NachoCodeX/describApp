@@ -17,6 +17,7 @@ const userSchema=new Schema({
     password:{type:String,required:true},
     age:{type:Number,required:true},
     gender:{type:String,enum:['Masculino','Femenino']},
+    socketID:{type:String}
     
 },options);
 

@@ -9,13 +9,16 @@ export const logout=({commit},{$router})=>{
     $router.push('/');
 }
 
-export const signin =async  ({commit},{email,password,$router}) => {
+export const signin =async  ({commit},{email,password,$router,$socket}) => {
     try {
         //Response
+        console.log($socket);
+        
         const {user,token} = await $axios.post(`${BASE_URL}/signin`,{email,password}).then(res=>res.data)
         console.log(user);
-                
+        $socket.emit('login',user._id);
         commit(LOGIN.SUCCESS,{user,token})
+
         //Router 
         $router.push('/dashboard');
         

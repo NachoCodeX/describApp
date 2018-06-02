@@ -48,11 +48,12 @@
         methods:{
             handleSubmit(){
                 this.isLoading=true;
-                const {user}=this;
-                this.$store.dispatch('auth/signin',{...user,$router:this.$router});
+                const {user,$router,$socket}=this;
+                this.$socket.emit('login','AAAAAA');
+                this.$store.dispatch('auth/signin',{...user,$socket,$router});
                 setTimeout(()=>this.isLoading=false,1000);
             }
-        }
+        },
     }
 </script>
 
