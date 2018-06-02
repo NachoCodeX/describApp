@@ -4,7 +4,8 @@ module.exports = function (ctx) {
   return {
     // app plugins (/src/plugins)
     plugins: [
-      'axios'
+      'axios',
+      'socket'
     ],
     css: [
       'app.styl'
@@ -39,6 +40,7 @@ module.exports = function (ctx) {
         'QLayoutHeader',
         'QLayoutDrawer',
         'QPageContainer',
+        'QLayoutFooter',
         'QPage',
         'QToolbar',
         'QToolbarTitle',

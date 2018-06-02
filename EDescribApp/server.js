@@ -5,8 +5,12 @@ import {waterfall} from 'async';
 import {URI,PORT,MONGO_CONFIG} from './config';
 
 import app from './app';
+import io from './real-time/' ;
 
 const server = require('http').Server(app);
+io(require('socket.io')(server));
+
+
 
 const tasks=[
     done=>{

@@ -44,10 +44,11 @@
     </q-page-container>
 
     <q-layout-footer>
-      <q-tabs inverted class="fixed-bottom">
+      <q-tabs @select="handleSelect" inverted class="fixed-bottom">
         <q-tab slot="title" name="tab-1" icon="account_circle"/>
         <q-tab slot="title" name="tab-2" icon="message"/>
-        <q-tab @click.native="logout" slot="title" name="tab-3" icon="power_settings_new"/>
+        <q-tab slot="title" name="tab-3" icon="offline_bolt"/>
+        <q-tab @click.native="logout" slot="title" name="tab-4" icon="power_settings_new"/>
       </q-tabs>
     </q-layout-footer>
 
@@ -65,6 +66,10 @@ export default {
   methods: {
     logout(){
       this.$store.dispatch('auth/logout',{$router:this.$router});
+    },
+    handleSelect(e){
+      console.log(e);
+      
     }
   }
 }

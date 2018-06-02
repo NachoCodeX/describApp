@@ -1,5 +1,6 @@
 import BaseUser from './baseUser';
 import {Schema} from 'mongoose';
+import vehicleSchema from './vehicle';
 
 
 
@@ -36,7 +37,10 @@ const userSchema=new Schema({
     drivers:{
         0:driverSchema,
         1:driverSchema
-    }
+    },
+    policy:{type:Schema.ObjectId,ref:"Policy"},
+    vehicle:vehicleSchema
+
 },{discriminatorKey:'role'});
 
 const User = BaseUser.discriminator('USER',userSchema);
