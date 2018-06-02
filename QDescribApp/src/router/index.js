@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import {isAuth} from '../../shared/';
 
 import routes from './routes'
 
@@ -20,5 +21,26 @@ const Router = new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes
 })
+
+
+Router.beforeEach((to,from,next)=>{
+  let {requiresAuth}=to.meta;
+  const token = localStorage.getItem('token');
+  console.log(token);
+  
+  console.log(`REQUIRES AUTH -> ${requiresAuth}`);
+  console.log(isAuth(token));
+  if(requiresAuth){
+    
+    if(isAuth(token).isValid) return next();
+    else return next('/');
+  }else{
+    if(isAuth(token).isValid) return next('/dashboard');
+    return next();
+  }
+  
+
+})
+
 
 export default Router

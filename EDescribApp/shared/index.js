@@ -22,9 +22,10 @@ export function decodeToken(token){
 };
 
 
-export function generateToken(sub){
+export function generateToken(sub,role){
     const payload={
         sub,
+        role,
         iat:moment().unix(),
         exp:moment().add(1,'days').unix()
     }
@@ -35,13 +36,14 @@ export function generateToken(sub){
 
 
 export function isAuth(token){
+    
     try {
         let payload=jwt.decode(token,SECRET_TOKEN);
         if(payload.exp <= moment().unix()){
-            return false;
+            return {isValid:false};
         }
-        return true;            
+        return {isValid:true,role:payload.role};
     } catch (error) {
-        return false;
+        return {isValid:false};
     }
 }

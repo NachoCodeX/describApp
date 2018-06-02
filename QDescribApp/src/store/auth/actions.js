@@ -4,6 +4,11 @@ import {Notify} from 'quasar';
 const BASE_URL='http://localhost:8000/describapp/auth';
 
 
+export const logout=({commit},{$router})=>{
+    localStorage.removeItem('token');
+    $router.push('/');
+}
+
 export const signin =async  ({commit},{email,password,$router}) => {
     try {
         //Response

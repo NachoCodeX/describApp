@@ -32,9 +32,9 @@
         inset-delimiter
       >
         <q-list-header>Essential Links</q-list-header>
-        <q-item @click.native="openURL('https://twitter.com/quasarframework')">
-          <q-item-side icon="rss feed" />
-          <q-item-main label="Twitter" sublabel="@quasarframework" />
+        <q-item @click.native="logout">
+          <q-item-side icon="power_settings_new" />
+          <q-item-main label="Logout" sublabel="" />
         </q-item>
       </q-list>
     </q-layout-drawer>
@@ -56,7 +56,9 @@ export default {
     }
   },
   methods: {
-    openURL
+    logout(){
+      this.$store.dispatch('auth/logout',{$router:this.$router});
+    }
   }
 }
 </script>

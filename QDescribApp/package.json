@@ -10,7 +10,9 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "jwt-simple": "^0.5.1",
+    "moment": "^2.22.2"
   },
   "devDependencies": {
     "quasar-cli": "^0.16.0"

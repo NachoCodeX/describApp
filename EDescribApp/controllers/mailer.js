@@ -14,8 +14,8 @@ module.exports={
                 });
             
             
-                transporter.sendMail(mailOptions,(erro,info)=>{
-                    if(erro) return reject({error});
+                transporter.sendMail(mailOptions,(error,info)=>{
+                    if(error) return reject({error});
                     console.log("Message was successfully sent!...");
                     
                     resolve(true)

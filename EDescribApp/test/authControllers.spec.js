@@ -11,9 +11,12 @@ describe("Auth Controllers Testing",()=>{
         db.connect();
     });
 
+
+
+
     it('should response POST /signin',done=>{
         const user={    
-            email:'4811095288ic@gmail.com',
+            email:'4811095288@gmail.com',
             password:'12345678'
         }
 
@@ -29,23 +32,52 @@ describe("Auth Controllers Testing",()=>{
 
 
 
-    it.skip('It should response POST method /signup',done=>{
+    it.skip('should create a User with role USER',done=>{
         
         const user={
-            email:'4811095288ic@gmail.com',
+            email:'4811095288@gmail.com',
             password:'12345678',
             confirmPassword:'12345678',
             firstName:'Jesus Ignacio',
             lastName:'Castillo Barrios',
-            age:21
+            age:19,
+            rfc:'RFCTEST',
+            gender:'Masculino',
+            nationality:'Mexicana',
+            maritalStatus:'Soltero',
+            address:{
+                state:'San Luis Potosí',
+                municipality:'Ciudad Valles',
+                street:{
+                    name:'Pedro Antonio Santos',
+                    noExt:'48',
+                    noInt:'A'
+                },
+                col:'Zona Centro',
+                postalCode:79000
+            },
+            contact:{
+                mobile:'4811095288',
+                phone:null
+            },
+            drivers:{
+                0:{
+                    firstName:'Driver Test First Name',
+                    lastName:'Driver Test Last Name',
+                    age:66,
+                    gender:'Femenino'
+                }
+            },
         }
 
         request(app).post(`${BASE_URL}/signup`)
         .send(user)
         .then(response=>{
+
             expect(response.statusCode).toBe(200)
             done();
         });
     
-    });    
+    });
+
 });

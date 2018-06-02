@@ -4,7 +4,11 @@ export default [
     path: '/',
     component: () => import('layouts/Index'),
     children: [
-      { path: '', component: () => import('pages/Index') }
+      { 
+        path: '', 
+        component: () => import('pages/Index'),
+        meta:{requiresAuth:false}
+      }
     ]
   },
 
@@ -12,7 +16,10 @@ export default [
     path:'/dashboard',
     component:()=> import('layouts/default'),
     children:[
-      {path:'',component:()=>import('pages/Dashboard')}
+      { path:'',
+        component:()=>import('pages/Dashboard'),
+        meta:{requiresAuth:true}
+      }
     ] 
   },
 

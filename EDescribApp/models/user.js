@@ -1,75 +1,49 @@
-import mongoose, { mongo } from 'mongoose';
-import {hashSync,genSaltSync,compareSync} from 'bcrypt';
-import {SALT_FACTOR} from '../config';
-const Schema=mongoose.Schema;
+import BaseUser from './baseUser';
+import {Schema} from 'mongoose';
 
-const userSchema=new Schema({
+
+
+const driverSchema=new Schema({
+    _id:false,
     firstName:{type:String,required:true},
     lastName:{type:String,required:true},
-    email:{
-        type:String,required:true,unique:true,
-        match:/^\S+@\S+\.\S{3}$/
-    },
-    password:{type:String,required:true},
     age:{type:Number,required:true},
-});
-
-userSchema.virtual('fullname').get(function(){
-    return `${this.firstName} ${this.lastName}`;
+    gender:{type:String,enum:['Masculino','Femenino']},
 });
 
 
-userSchema.methods.comparePassword=function(password){
-    return compareSync(password,this.password);
-};
-userSchema.methods.userExists=function(){    
-    return this.model('User').find({email:this.email}).exec().then(response=>response);
-}
 
+const userSchema=new Schema({
 
-
-
-
-
-function hashPassword(user){
-    const resultPromise=new Promise((resolve,reject)=>{
-        const SALT=genSaltSync(SALT_FACTOR);
-        return resolve(hashSync(user.password,SALT));
-    });
-    return resultPromise;
-}
-
-
-
-
-
-userSchema.pre('save',async function(next){
-    
-    try { 
-        let user=this,
-        isExists=await user.userExists(), 
-        errorMessage=new Error(`${user.email} is already in use`);
-        
-        if(user.isNew && isExists.length>0) return next(errorMessage);
-        else if(user.isModified('password')){
-                console.log(`NEW USER`);   
-                user.password=await hashPassword(user);
-                return next();//explicit
-        }
-
-    } catch (error) {
-        console.log(error);
-        
-        console.log("ERROR!");
-        
+    rfc:{type:String,required:true},
+    nationality:{type:String,enum:['Mexicana','Extranjera']},
+    maritalStatus:{type:String,enum:['Soltero','Divorciado','Viudo','Casado','Unión Libre']},
+    address:{
+        state:{type:String,required:true},
+        municipality:{type:String,required:true},
+        street:{
+            name:{type:String,required:true},
+            noExt:{type:Number},
+            noInt:{type:String}
+        },
+        col:{type:String,required:true},
+        postalCode:{type:Number,required:true}
+    },
+    contact:{
+        mobile:{type:String,required:true},
+        phone:String
+    },
+    drivers:{
+        0:driverSchema,
+        1:driverSchema
     }
-});
+},{discriminatorKey:'role'});
 
-export default mongoose.model('User',userSchema);;
+const User = BaseUser.discriminator('USER',userSchema);
 
-
-
-
+export default User;
 
 
 
+
+    
