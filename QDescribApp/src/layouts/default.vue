@@ -5,7 +5,7 @@
         color="primary"
         :inverted="$q.theme === 'ios'"
       >
-        <q-btn
+        <!-- <q-btn
           flat
           dense
           round
@@ -13,7 +13,7 @@
           aria-label="Menu"
         >
           <q-icon name="menu" />
-        </q-btn>
+        </q-btn> -->
 
         <q-toolbar-title>
           DescribApp
@@ -42,12 +42,19 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <q-layout-footer>
+      <q-tabs inverted class="fixed-bottom">
+        <q-tab slot="title" name="tab-1" icon="account_circle"/>
+        <q-tab slot="title" name="tab-2" icon="message"/>
+        <q-tab @click.native="logout" slot="title" name="tab-3" icon="power_settings_new"/>
+      </q-tabs>
+    </q-layout-footer>
+
   </q-layout>
 </template>
 
 <script>
-import { openURL } from 'quasar'
-
 export default {
   name: 'LayoutDefault',
   data () {

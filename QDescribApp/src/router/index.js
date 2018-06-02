@@ -26,12 +26,9 @@ const Router = new VueRouter({
 Router.beforeEach((to,from,next)=>{
   let {requiresAuth}=to.meta;
   const token = localStorage.getItem('token');
-  console.log(token);
   
-  console.log(`REQUIRES AUTH -> ${requiresAuth}`);
-  console.log(isAuth(token));
+  
   if(requiresAuth){
-    
     if(isAuth(token).isValid) return next();
     else return next('/');
   }else{
