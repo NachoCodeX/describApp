@@ -1,11 +1,13 @@
 import $axios from 'axios';
 import {LOGIN} from './mutation-types';
 import {Notify} from 'quasar';
-const BASE_URL='http://localhost:8000/describapp/auth';
+// const BASE_URL='http://localhost:8000/describapp/auth';
+const BASE_URL='http://192.168.1.72:8000/describapp/auth';
 
 
-export const logout=({commit},{$router})=>{
+export const logout=({commit},{$router,$socket,_id})=>{
     localStorage.removeItem('token');
+    $socket.emit('logout',_id)
     $router.push('/');
 }
 

@@ -1,4 +1,4 @@
-import {setSocketID} from './helpers';
+import {setSocketID,removeSocketID} from './helpers';
 
 export default io=>{
     
@@ -7,8 +7,7 @@ export default io=>{
         
      
         socket.on('login',async _id=>{
-            console.log(`LOGIN -> ${_id}`);
-            
+            console.log(`LOGIN -> ${_id}`);            
             try {
                 await setSocketID(_id,socket.id)
             } catch (error) {
@@ -16,6 +15,13 @@ export default io=>{
                 console.log(error);
                 
             }
+        });
+        
+        socket.on('logout',async _id=>await removeSocketID(_id));
+
+        socket.on('alert',async data=>{
+            console.log(`ALERT!!!!`);
+            console.log(data);
         });
 
     });

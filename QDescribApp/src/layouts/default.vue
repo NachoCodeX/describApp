@@ -1,5 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
+  
     <q-layout-header>
       <q-toolbar
         color="primary"
@@ -16,7 +17,7 @@
         </q-btn> -->
 
         <q-toolbar-title>
-          DescribApp
+          {{getName}}
           <div slot="subtitle">Running on Quasar v{{ $q.version }}</div>
         </q-toolbar-title>
       </q-toolbar>
@@ -44,10 +45,10 @@
     </q-page-container>
 
     <q-layout-footer>
-      <q-tabs @select="handleSelect" inverted class="fixed-bottom">
+      <q-tabs v-model="selected" @select="handleSelect" inverted class="fixed-bottom">
         <q-tab slot="title" name="tab-1" icon="account_circle"/>
         <q-tab slot="title" name="tab-2" icon="message"/>
-        <q-tab slot="title" name="tab-3" icon="offline_bolt"/>
+        <!-- <q-tab slot="title" name="tab-3" icon="offline_bolt"/> -->
         <q-tab @click.native="logout" slot="title" name="tab-4" icon="power_settings_new"/>
       </q-tabs>
     </q-layout-footer>
@@ -56,21 +57,35 @@
 </template>
 
 <script>
+ import {mapGetters} from 'vuex';
+
 export default {
+
   name: 'LayoutDefault',
   data () {
     return {
+      opened:true,
+      selected:'tab-1',
       leftDrawerOpen: this.$q.platform.is.desktop
+      
     }
   },
   methods: {
     logout(){
-      this.$store.dispatch('auth/logout',{$router:this.$router});
+      const data={
+        $socket:this.$socket,
+        $router:this.$router,
+        _id:this.$store.state.auth.user._id
+      }
+      this.$store.dispatch('auth/logout',data);
     },
     handleSelect(e){
       console.log(e);
       
     }
+  },
+  computed:{
+    ...mapGetters(['getName'])
   }
 }
 </script>

@@ -3,7 +3,6 @@ import { generateToken } from '../shared';
 
 export function authenticate(email,password){
     console.log(`EMAIL : ${email}`);
-    
     return User.findOne({email})
     .exec()
     .then(user=>{

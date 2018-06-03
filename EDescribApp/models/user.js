@@ -39,7 +39,8 @@ const userSchema=new Schema({
         1:driverSchema
     },
     policy:{type:Schema.ObjectId,ref:"Policy"},
-    vehicle:vehicleSchema
+    vehicle:vehicleSchema,
+    ajustador:{type:Schema.ObjectId,ref:'User'}
 
 },{discriminatorKey:'role'});
 

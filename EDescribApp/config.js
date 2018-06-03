@@ -1,6 +1,6 @@
 module.exports={
     PORT:process.env.PORT || 8000,
-    URI: process.env.DB || 'mongodb://127.0.0.1:27017/describdb',
+    URI: process.env.DB || 'mongodb://localhost:27017/describdb',
     MONGO_CONFIG:{
         user:'admin',
         pass:'123456',

@@ -11,7 +11,7 @@ function valid(authorization,_role,next){
     else next(new Error('token is invalid'));
 }
 
-export  function validator(req,res,next){
+export  function validator(req,res,next){    
     const errors=validationResult(req);
     return errors.isEmpty()? next():next(errors.array());
 }

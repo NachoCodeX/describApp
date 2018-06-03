@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 const Schema= mongoose.Schema;
 
 const policySchema=new Schema({
+    folio:{type:Number,required:true,unique:true},
     previousID:{type:String},
     expiration:{type:Date,required:true},
     created_at:{type:Date,default:Date.now},

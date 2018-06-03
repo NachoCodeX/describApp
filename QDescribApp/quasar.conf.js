@@ -56,14 +56,20 @@ module.exports = function (ctx) {
         'QTabs',
         'QTab',
         'QTabPane',
-        'QRouteTab'
+        'QRouteTab',
+        'QFab',
+        'QFabAction',
+        'QModal'
       ],
       directives: [
-        'Ripple'
+        'Ripple',
+        'CloseOverlay'
       ],
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
+        'AddressbarColor',
+        'Dialog'
       ],
       iconSet: ctx.theme.mat ? 'material-icons' : 'ionicons'
     },

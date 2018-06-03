@@ -1,35 +1,40 @@
 <template>
     <form @keydown.enter="handleSubmit" class="col-md-4 col-sm-6 col-xs-10">
         <q-field
-          class="q-mb-md"
-          icon="account_circle"
+          icon-color="white"
+          class="q-mb-lg"
+          icon="face"
         >
           <q-input
-            type="email"
+            dark
+            color="white"
             float-label="Email"
+            type="email"
             v-model="user.email"
-
           >
 
           </q-input>
         </q-field>
 
         <q-field
-          class="q-mb-md"
+          icon-color="white"
+          class="q-mb-lg"
           icon="fingerprint"
         >
           <q-input
-            type="password"
+            dark
             float-label="Password"
+            color="white"
+            type="password"
             v-model="user.password"
           >
 
           </q-input>
         </q-field>
         
-        <q-field class="">
-            <q-btn @click.prevent="handleSubmit" :loading="isLoading" color="primary" class="full-width">Submit</q-btn>
-        </q-field>
+        <div class="full-width flex items-end justify-end">
+            <q-btn text-color="secondary"  @click.prevent="handleSubmit" :loading="isLoading" color="white">Login</q-btn>
+        </div>
 
       </form>
 </template>
@@ -49,7 +54,6 @@
             handleSubmit(){
                 this.isLoading=true;
                 const {user,$router,$socket}=this;
-                this.$socket.emit('login','AAAAAA');
                 this.$store.dispatch('auth/signin',{...user,$socket,$router});
                 setTimeout(()=>this.isLoading=false,1000);
             }
@@ -58,6 +62,4 @@
 </script>
 
 <style lang="stylus">
-
-
 </style>

@@ -1,11 +1,8 @@
 <template>
-  <q-page class="flex flex-center">
-      <SignInForm/>
+  <q-page  class="color flex flex-center column-inline">
+    <SignInForm/>
   </q-page>
 </template>
-
-<style>
-</style>
 
 <script>
 import SignInForm from '../components/SignInForm';
@@ -15,3 +12,10 @@ export default {
 
 }
 </script>
+
+<style lang="stylus">
+  @import '~variables';
+  .color
+    background $primary
+
+</style>
