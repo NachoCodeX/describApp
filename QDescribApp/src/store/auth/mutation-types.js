@@ -5,3 +5,9 @@ export const  LOGIN={
     SUCCESS:'LOGIN_SUCCESS',
     ERROR:'LOGIN_ERROR'
 }
+
+export const  LOGOUT={
+    REQUEST:'LOGOUT_REQUEST',
+    SUCCESS:'LOGOUT_SUCCESS',
+    ERROR:'LOGOUT_ERROR'
+}

@@ -10,10 +10,13 @@ const accidentSchema=new Schema({
     user:{type:Schema.ObjectId,ref:'User'},
     created_at:{type:Date,default:Date.now},
     ajustador:{type:Schema.ObjectId,ref:'User'},
-    finished_at:{type:Date,default:Date.now}
+    finished_at:{type:Date},
+    isActive:{type:Boolean,default:true}
 });
 
 accidentSchema.pre('save',next=>{
+    console.log("ACCIDENT CREATED!");
+    
     next();    
 });
 

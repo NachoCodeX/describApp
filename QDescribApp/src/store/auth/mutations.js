@@ -1,16 +1,20 @@
-import {LOGIN} from './mutation-types';
+import {LOGIN, LOGOUT} from './mutation-types';
 
 export default {
-    [LOGIN.SUCCESS](state,{user,token}){
+    [LOGIN.SUCCESS](state,{accidents,user,token}){
         console.log("MUTATION");
-        localStorage.setItem('token',token);
-        state.user=user;
-
+        console.log(accidents);
         
+        localStorage.setItem('token',token);
+        state.user={...user,accidents};
+
     },
     [LOGIN.ERROR](state){
 
+    },
+    [LOGOUT.SUCCESS](state){
+        
+        state={}
     }
-
 
 }

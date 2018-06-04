@@ -5,7 +5,8 @@ module.exports = function (ctx) {
     // app plugins (/src/plugins)
     plugins: [
       'axios',
-      'socket'
+      'socket',
+      'maps'
     ],
     css: [
       'app.styl'
@@ -29,7 +30,7 @@ module.exports = function (ctx) {
       }
     },
     devServer: {
-      // https: true,
+      //https: true,
       // port: 8080,
       open: true // opens browser window automatically
     },
@@ -49,6 +50,8 @@ module.exports = function (ctx) {
         'QList',
         'QListHeader',
         'QItem',
+        'QItemSeparator',
+        'QItemTile',
         'QItemMain',
         'QItemSide',
         'QField',

@@ -17,7 +17,7 @@ describe("Auth Controllers Testing",()=>{
 
 
 
-    it.skip('should response POST /signin',done=>{
+    it('should response POST /signin',done=>{
         const user={    
             email:'4811095288ic@gmail.com',
             password:'12345678'

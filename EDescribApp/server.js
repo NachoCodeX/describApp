@@ -6,8 +6,15 @@ import {URI,PORT,MONGO_CONFIG} from './config';
 
 import app from './app';
 import io from './real-time/' ;
+import fs from 'fs';
 
-const server = require('http').Server(app);
+ const server = require('http').Server(app);
+// const server = require('https').createServer({
+//     key:fs.readFileSync('key.pem'),
+//     cert:fs.readFileSync('cer.pem'),
+//     passphrase:'12345678'
+// },app);
+
 io(require('socket.io')(server));
 
 
